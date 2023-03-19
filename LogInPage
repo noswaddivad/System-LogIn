@@ -1,0 +1,96 @@
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.HashMap;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
+
+public class LogInPage implements ActionListener{
+	HashMap<String,String> logininfo = new HashMap<String,String>();
+	
+	JFrame frame = new JFrame();
+	JButton loginbutton = new JButton("LOGIN");
+	JButton resetbutton = new JButton("RESET");
+	JTextField useridfield = new JTextField();
+	JPasswordField userpasswordfield = new JPasswordField();
+	JLabel useridlabel = new JLabel("USERID: ");
+	JLabel userpasswordlabel = new JLabel("PASSWORD: ");
+	JLabel messagelabel = new JLabel();
+	
+	LogInPage(HashMap<String,String> loginoriginal){
+		
+		logininfo = loginoriginal; 
+		
+		useridlabel.setBounds(50,100,75,25);
+		userpasswordlabel.setBounds(50,150,75,25);
+		
+		messagelabel.setBounds(125,250,250,25);
+		messagelabel.setFont(new Font(null,Font.ITALIC,25));
+		
+		useridfield.setBounds(125,100,200,25);
+		userpasswordfield.setBounds(125,150,200,25);
+		
+		loginbutton.setBounds(125,200,100,25);
+		loginbutton.setFocusable(false);
+		loginbutton.addActionListener(this);
+		
+		resetbutton.setBounds(225,200,100,25);
+		resetbutton.setFocusable(false);
+		resetbutton.addActionListener(this);
+		
+		
+		frame.add(useridlabel);
+		frame.add(userpasswordlabel);
+		frame.add(messagelabel);
+		frame.add(useridfield);
+		frame.add(userpasswordfield);
+		frame.add(loginbutton);
+		frame.add(resetbutton);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setSize(420,420);
+		frame.setLayout(null);
+		frame.setVisible(true);
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		
+		if(e.getSource()== resetbutton) {
+			useridfield.setText("");
+			userpasswordfield.setText("");
+		}
+		if(e.getSource()== loginbutton) {
+			
+			String userID = useridfield.getText();
+			String PASSWORD = String.valueOf(userpasswordfield.getPassword());
+			
+			if(logininfo.containsKey(userID)) {
+				if(logininfo.get(userID).equals(PASSWORD)) {
+					messagelabel.setForeground(Color.green);
+					messagelabel.setText("LogIn Successful");
+					frame.dispose();
+					JOptionPane.showMessageDialog(null, "Successfully Login", "Warning", JOptionPane.PLAIN_MESSAGE);
+					NewPage newpage = new NewPage();
+					
+				}
+				else {
+					messagelabel.setForeground(Color.red);
+					messagelabel.setText("Wrong Password");
+				}
+			}
+			else {
+				messagelabel.setForeground(Color.red);
+				messagelabel.setText("Username Not Found");
+			}
+		}
+		
+		
+		
+	}
+}
