@@ -1,0 +1,92 @@
+import java.awt.Color;
+import java.awt.FlowLayout;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.HashMap;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JRadioButton;
+
+public class NewPage extends JFrame implements ActionListener{
+	
+	JRadioButton johnbutton;
+	JRadioButton krishabutton;
+	JRadioButton henrybutton;
+	JRadioButton haileybutton;
+	JRadioButton ashtonbutton;
+	
+	
+		JButton recommendedstudents = new JButton("Recommended Students");
+		JFrame frame = new JFrame();
+		JLabel label = new JLabel();
+		
+		
+	
+	NewPage(){
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setLayout(new FlowLayout());
+		
+		JRadioButton johnbutton = new JRadioButton("John Yap");
+		JRadioButton krishabutton = new JRadioButton("Krisha Cruz");
+		JRadioButton henrybutton = new JRadioButton("Henry Go");
+		JRadioButton haileybutton = new JRadioButton("Hailey Daily");
+		JRadioButton ashtonbutton = new JRadioButton("Ashton Drake");
+		
+		johnbutton.addActionListener(this);
+		krishabutton.addActionListener(this);
+		henrybutton.addActionListener(this);
+		haileybutton.addActionListener(this);
+		ashtonbutton.addActionListener(this);
+				
+		johnbutton.setBounds(50,100,100,25);
+		krishabutton.setBounds(100,100,100,25);
+		henrybutton.setBounds(150,100,100,25);
+		haileybutton.setBounds(200,100,100,25);
+		ashtonbutton.setBounds(250,100,100,25);
+		
+		recommendedstudents.setBounds(400,400,100,25);
+		recommendedstudents.setFocusable(false);
+		recommendedstudents.addActionListener(this);
+		
+		label.setBounds(100,200,200,25);
+		label.setFont(new Font(null,Font.ITALIC,25));
+		
+		
+		frame.add(recommendedstudents);
+		frame.setVisible(true);
+		
+		this.add(johnbutton);
+		this.add(krishabutton);
+		this.add(henrybutton);
+		this.add(haileybutton);
+		this.add(ashtonbutton);
+		
+		this.add(recommendedstudents);
+		this.add(label);
+		this.pack();
+		this.setVisible(true);
+		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+		this.setSize(500,500);
+		this.setLayout(null);
+		this.setVisible(true);
+		
+	}
+	
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		
+		if(e.getSource()== recommendedstudents) {
+			JOptionPane.showMessageDialog(frame,"The passers of the subjects are: Hailey Daily and Ashton Drake" + ashtonbutton + haileybutton);
+		}else {
+			JOptionPane.showMessageDialog(frame, "Please review the result again" + johnbutton + krishabutton + henrybutton);}
+		}
+}
+	
+	
+
+	
+
