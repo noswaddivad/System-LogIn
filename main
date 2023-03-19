@@ -1,0 +1,16 @@
+import javax.swing.JOptionPane;
+
+public class main {
+
+	public static void main(String[] args) {
+		
+		IDandPassword idandpassword = new IDandPassword();
+		
+		
+		LogInPage login = new LogInPage(idandpassword.getlogIn());
+		
+
+		
+	}
+
+}
